@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
@@ -27,7 +26,7 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Rule
-    public ActivityTestRule<CreateContactAcitivity> createContactAcitivityActivityTestRule = new ActivityTestRule(CreateContactAcitivity.class);
+    public ActivityTestRule<CreateBusinessActivity> createBusinessActivityTestRule = new ActivityTestRule(CreateBusinessActivity.class);
 
     @Rule
     public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule(MainActivity.class);
@@ -40,10 +39,10 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void onContactCreation() {
+    public void onBusinessCreation() {
         //Currently only fills in contact information.
-        onView(withId(R.id.name)).perform(typeText("Dave"));
-        onView(withId(R.id.email)).perform(typeText("dave@test.com"));
+        onView(withId(R.id.province)).perform(typeText("Dave"));
+        onView(withId(R.id.number)).perform(typeText("dave@test.com"));
         Espresso.closeSoftKeyboard();
     }
 }
