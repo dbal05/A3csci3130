@@ -9,6 +9,7 @@ import android.widget.EditText;
 public class DetailViewActivity extends Activity {
 
     private EditText nameField, emailField;
+    private MyApplicationData appState;
     Contact receivedPersonInfo;
 
     @Override
@@ -16,6 +17,8 @@ public class DetailViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
         receivedPersonInfo = (Contact)getIntent().getSerializableExtra("Contact");
+
+        appState = ((MyApplicationData) getApplicationContext());
 
         nameField = (EditText) findViewById(R.id.name);
         emailField = (EditText) findViewById(R.id.email);
@@ -28,10 +31,17 @@ public class DetailViewActivity extends Activity {
 
     public void updateContact(View v){
         //TODO: Update contact funcionality
+        String name = nameField.getText().toString();
+        String email = emailField.getText().toString();
+        Contact person = new Contact(receivedPersonInfo.uid, name, email);
+
+        appState.firebaseReference.child(receivedPersonInfo.uid).setValue(person);
+        finish();
     }
 
-    public void eraseContact(View v)
-    {
+    public void eraseContact(View v) {
         //TODO: Erase contact functionality
+        appState.firebaseReference.child(receivedPersonInfo.uid).removeValue();
+        finish();
     }
 }
