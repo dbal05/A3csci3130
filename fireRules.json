@@ -3,23 +3,23 @@
     ".read": "true",
     ".write": "true",
     "businesses": {
-            "$business": {
-                "name": {
-                    ".validate": "newData.val() != null && newData.isString() && newData.val().length < 49 && newData.val().length > 1"
-                },
-                "address": {
-                    ".validate": "newData.isString() && newData.val().length < 50"
-                },
-                "number": {
-                    ".validate": "newData.val() != null && newData.isString() && newData.val().length == 9"
-                },
-                "primaryBusiness": {
-                    ".validate": "newData.val() != null && newData.isString() && newData.val().matches(/Fisher|Distributor|Processor|Fish Monger/)"
-                },
-                "province": {
-                    ".validate": "newData.isString() && (newData.val().matches(/AB|BC|MB|NB|NL|NS|NT|NU|ON|PE|QC|SK|YT/))"
-                }
-            }
+      "$business": {
+        "name": {
+          ".validate": "newData.isString() && newData.val().length < 49 && newData.val().length > 1"
+        },
+        "address": {
+          ".validate": "newData.isString() && newData.val().length < 50"
+        },
+        "number": {
+          ".validate": "newData.val().matches(/^[0-9]*$/) && newData.val().length == 9"
+        },
+        "primaryBusiness": {
+          ".validate": "newData.isString() && newData.val().matches(/Fisher|Distributor|Processor|Fish Monger/)"
+        },
+        "province": {
+          ".validate": "newData.val().length == 0 || (newData.isString() && newData.val().matches(/AB|BC|MB|NB|NL|NS|NT|NU|ON|PE|QC|SK|YT/))"
         }
+      }
+    }
   }
 }

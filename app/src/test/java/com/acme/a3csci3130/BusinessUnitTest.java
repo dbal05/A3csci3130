@@ -17,7 +17,7 @@ public class BusinessUnitTest {
     private static Business business;
     @Before
     public void setup() {
-        business = new Business("LG0nQ9fmpqmCqIFN8Sh", "Westonian", "Fisher", "139 Lancaster Ave", "AB", "9024103829");
+        business = new Business("LG0nQ9fmpqmCqIFN8Sh", "Westonian", "Fisher", "139 Lancaster Ave", "AB", "902410382");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class BusinessUnitTest {
         assertEquals(business.primaryBusiness, "Fisher");
         assertEquals(business.address, "139 Lancaster Ave");
         assertEquals(business.province, "AB");
-        assertEquals(business.number, "9024103829");
+        assertEquals(business.number, "902410382");
     }
 
     @Test
