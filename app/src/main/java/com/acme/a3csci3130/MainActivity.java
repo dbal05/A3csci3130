@@ -11,12 +11,21 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * The Main Activity class that includes the FirebaseListAdapter.
+ * Handles creation of new Activities
+ * @author dahnbalan
+ */
 public class MainActivity extends Activity {
 
 
     private ListView businessListView;
     private FirebaseListAdapter<Business> firebaseAdapter;
 
+    /**
+     * onCreate of the Main Activity. Sets up firebase, UI, list view.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +61,20 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Creates a new activity that can create business object
+     * @param v View from the onCLick
+     */
     public void createBusinessButton(View v)
     {
         Intent intent=new Intent(this, CreateBusinessActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Creates a new activity that can show business details of a passed object
+     * @param business Passes in the business object through the Intent
+     */
     private void showDetailView(Business business)
     {
         Intent intent = new Intent(this, DetailViewActivity.class);

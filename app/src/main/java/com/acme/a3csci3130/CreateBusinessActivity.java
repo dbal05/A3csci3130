@@ -6,12 +6,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Class that is used to create a Business. It keep track of the textFields.
+ * It also generates the application state that can be used to get the firebase reference.
+ * @author dahnbalan
+ */
 public class CreateBusinessActivity extends Activity {
 
     private Button submitButton;
     private EditText nameField, numberField, primaryBusinessField, addressField, provinceField;
     private MyApplicationData appState;
 
+    /**
+     * onCreate of the Class. Used to set the application state and the textFields.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +36,11 @@ public class CreateBusinessActivity extends Activity {
         provinceField = (EditText) findViewById(R.id.province);
     }
 
+    /**
+     * Creates a new business object from the data of the textFields and generated key for id.
+     * Adds the business object to the firebase database and finishes
+     * @param v Current view from onClick
+     */
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
         String businessID = appState.firebaseReference.push().getKey();

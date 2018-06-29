@@ -24,6 +24,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.core.IsNot.not;
 
+/**
+ * Espresso tests to test the Create, Read, Update and Delete functionality of the application
+ */
 @RunWith(AndroidJUnit4.class)
 public class EspressoCrudTest {
 
@@ -34,6 +37,11 @@ public class EspressoCrudTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
     private MainActivity mainActivity;
 
+
+    /**
+     * Function that is used to clear out the firebase database before every new test, for testing purposes.
+     * @throws Exception
+     */
     @Before
     public void setup() throws Exception {
         mainActivity = mActivityRule.getActivity();
@@ -62,6 +70,7 @@ public class EspressoCrudTest {
 
     @Test
     public void onBusinessUpdate() {
+        //Creation of business object
         onView(withId(R.id.submitButton)).perform(click());
 
         onView(withId(R.id.name)).perform(typeText("Test Inc"), closeSoftKeyboard());
@@ -72,6 +81,7 @@ public class EspressoCrudTest {
 
         onView(withId(R.id.submitButton)).perform(click());
 
+        //Updating Business object
         onData(anything()).inAdapterView(withId(R.id.listView)).atPosition(0).perform(click());
 
         onView(withId(R.id.name)).perform(replaceText("Testing INC"), closeSoftKeyboard());
@@ -83,6 +93,7 @@ public class EspressoCrudTest {
 
     @Test
     public void onBusinessRead() {
+        //Creation of business object
         onView(withId(R.id.submitButton)).perform(click());
 
         onView(withId(R.id.name)).perform(typeText("AnotherBusiness"), closeSoftKeyboard());
@@ -91,6 +102,8 @@ public class EspressoCrudTest {
         onView(withId(R.id.address)).perform(typeText("184 Test Ave"), closeSoftKeyboard());
 
         onView(withId(R.id.submitButton)).perform(click());
+
+        //Reading the created business object to verify
         onData(anything()).inAdapterView(withId(R.id.listView)).atPosition(0).perform(click());
 
         onView(withId(R.id.name)).check(matches(withText("AnotherBusiness")));
@@ -98,6 +111,7 @@ public class EspressoCrudTest {
 
     @Test
     public void onBusinessDelete() {
+        //Creation of business object
         onView(withId(R.id.submitButton)).perform(click());
 
         onView(withId(R.id.name)).perform(typeText("Test Inc"), closeSoftKeyboard());
@@ -106,6 +120,8 @@ public class EspressoCrudTest {
         onView(withId(R.id.province)).perform(typeText("AB"), closeSoftKeyboard());
 
         onView(withId(R.id.submitButton)).perform(click());
+
+        //Accessing created object and deleting it
         onData(anything()).inAdapterView(withId(R.id.listView)).atPosition(0).perform(click());
 
         onView(withId(R.id.deleteButton)).perform(click());
